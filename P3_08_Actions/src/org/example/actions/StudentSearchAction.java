@@ -15,7 +15,7 @@ public class StudentSearchAction extends AbstractAction {
     private DefaultListModel searchResult;
     private StudentManager studentService;
 
-    /*public StudentSearchAction(String text, ImageIcon icon, String desc, Integer mnemonic) {
+    /*public StudentSearchAction(String text, ImageIcon icon, String desc, Integer mnemonic) { 
         super(text, icon);
         putValue(SHORT_DESCRIPTION, desc);
         putValue(MNEMONIC_KEY, mnemonic);

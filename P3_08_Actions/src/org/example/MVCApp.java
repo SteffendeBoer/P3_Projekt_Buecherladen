@@ -116,7 +116,7 @@ public class MVCApp extends JFrame implements ItemListener { // MVCApp ist ein F
         // Icon im Menü ausblenden (weil wir evtl. Icons nur in Toolbar wollen).
         bookNewItem.setIcon(null);
 
-        // Checkbox-Menüeintrag, der die Action an/aus schaltet.
+        // Checkbox-Menüeintrag, der die Action an/aus schaltet. 
         bookNewActionStateToggleItem = new JCheckBoxMenuItem("New  Action enabled");
 
         // Startzustand: aktiviert.
