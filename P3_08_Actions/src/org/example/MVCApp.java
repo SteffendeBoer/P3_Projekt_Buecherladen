@@ -117,7 +117,7 @@ public class MVCApp extends JFrame implements ItemListener { // MVCApp ist ein F
         bookNewItem.setIcon(null);
 
         // Checkbox-Menüeintrag, der die Action an/aus schaltet.
-        bookNewActionStateToggleItem = new JCheckBoxMenuItem("New Action enabled");
+        bookNewActionStateToggleItem = new JCheckBoxMenuItem("New  Action enabled");
 
         // Startzustand: aktiviert.
         bookNewActionStateToggleItem.setSelected(true);

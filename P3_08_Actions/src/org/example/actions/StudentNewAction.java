@@ -15,7 +15,7 @@ public class StudentNewAction extends AbstractAction {
             
     @Override
     public void actionPerformed(ActionEvent e) {
-        JOptionPane.showMessageDialog(null, "Would have done the 'Create new Student' action.");
+        JOptionPane.showMessageDialog(null, "Would  have done the 'Create new Student' action.");
     }
     
 }

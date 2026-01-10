@@ -39,7 +39,7 @@ public class StudentSearchAction extends AbstractAction {
                 searchResult.addElement(elementModel);
             }
         } catch (BadLocationException ex) {
-            System.err.println("BadLocationException: " + ex.getMessage());
+            System.err.println("BadLocationException : " + ex.getMessage());
         }
     }
 
