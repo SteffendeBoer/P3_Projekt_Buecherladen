@@ -38,7 +38,7 @@ public class MVCApp extends JFrame implements ItemListener { // MVCApp ist ein F
     private Action bookSearchAction;    // Action für "Suchen"  (war bei dir teils falsch benannt)
 
     // Checkbox im Menü, mit der man die New-Action aktivieren/deaktivieren kann.
-    private JCheckBoxMenuItem bookNewActionStateToggleItem;
+    private JCheckBoxMenuItem bookNewActionStateToggleItem; 
 
     // Service/Model-Teil: verwaltet die Bücher und liefert Suchergebnisse.
     private BookManager bookService = new BookManager();

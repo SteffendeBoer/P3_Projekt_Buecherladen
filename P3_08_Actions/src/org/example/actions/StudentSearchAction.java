@@ -26,7 +26,7 @@ public class StudentSearchAction extends AbstractAction {
         this.searchInput = searchInput;
         this.searchResult = searchResult;
         this.studentService = studentService;
-    }
+    } 
 
     @Override
     public void actionPerformed(ActionEvent e) {
