@@ -1,10 +1,10 @@
 package org.example.model;
 
-public class Student {
+public class Book {
     private int id;
     private String name;
     
-    public Student (int id, String name){
+    public Book (int id, String name){
         this.name = name;
         this.id = id;
     }
