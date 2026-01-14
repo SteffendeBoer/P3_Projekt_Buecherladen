@@ -21,19 +21,19 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.text.Document;
 import javax.swing.text.PlainDocument;
-import org.example.actions.StudentNewAction;
-import org.example.actions.StudentSearchAction;
-import org.example.model.StudentManager;
+import org.example.actions.BookNewAction;
+import org.example.actions.BookSearchAction;
+import org.example.model.BuchManager;
 
 
 public class MVCApp extends JFrame implements ItemListener {
 
     private static MVCApp app;
 
-    Action studentNewAction, StudentSearchAction;
-    JCheckBoxMenuItem studentNewActionStateToggleItem;
+    Action bookNewAction, bookSearchAction;
+    JCheckBoxMenuItem bookNewActionStateToggleItem;
 
-    StudentManager studentService = new StudentManager();
+    BuchManager bookService = new BuchManager();
     DefaultListModel searchResultListModel = new DefaultListModel();
     DefaultListSelectionModel searchResultSelectionModel = new DefaultListSelectionModel();
     Document searchInput = new PlainDocument();
@@ -65,13 +65,21 @@ public class MVCApp extends JFrame implements ItemListener {
     }
 
     private void createActions() {
-        studentNewAction = new StudentNewAction("New ",
+        bookNewAction = new BookNewAction("New Book", 
+        createIcon("images/Open16.gif"),
+        "Erstelle neuen Eintrag",
+        KeyEvent.VK_B,
+        bookService);
+        
+        
+        /*bookNewAction = new BookNewAction("New ",
                 createIcon("/icons/13.gif"),
-                "Creates a new Student object.",
+                "Creates a new Book object.",
                 KeyEvent.VK_N);
+        */
 
-        StudentSearchAction = new StudentSearchAction(searchInput,
-                searchResultListModel, studentService);
+        bookSearchAction = new BookSearchAction(searchInput,
+                searchResultListModel, bookService);
 
     }
 
@@ -82,23 +90,23 @@ public class MVCApp extends JFrame implements ItemListener {
 
         // create menu
         JMenu stateMenu = new JMenu("States");
-        JMenu studentsMenu = new JMenu("Actions");
+        JMenu bookMenu = new JMenu("Actions");
 
         // create action menu items
-        JMenuItem studentNewItem = new JMenuItem(studentNewAction);
-        studentNewItem.setIcon(null); // do not show the action's icon
+        JMenuItem bookNewItem = new JMenuItem(bookNewAction);
+        bookNewItem.setIcon(null); // do not show the action's icon
 
         // create toggle menu items
-        studentNewActionStateToggleItem = new JCheckBoxMenuItem("New Action enabled");
-        studentNewActionStateToggleItem.setSelected(true);
-        studentNewActionStateToggleItem.addItemListener(this);
+        bookNewActionStateToggleItem = new JCheckBoxMenuItem("New Action enabled");
+        bookNewActionStateToggleItem.setSelected(true);
+        bookNewActionStateToggleItem.addItemListener(this);
 
         // add menu items to menu
-        studentsMenu.add(studentNewItem);
-        stateMenu.add(studentNewActionStateToggleItem);
+        bookMenu.add(bookNewItem);
+        stateMenu.add(bookNewActionStateToggleItem);
 
         // add menu to menu bar
-        menuBar.add(studentsMenu);
+        menuBar.add(bookMenu);
         menuBar.add(stateMenu);
 
         return menuBar;
@@ -110,12 +118,12 @@ public class MVCApp extends JFrame implements ItemListener {
         JToolBar toolBar = new JToolBar();
 
         // create buttons
-        JButton studentNewButton = new JButton(studentNewAction);
-        studentNewButton.setFocusPainted(false); // do not show focus borders
-        studentNewButton.setText(null); // do not show the action's text
+        JButton bookNewButton = new JButton(bookNewAction);
+        bookNewButton.setFocusPainted(false); // do not show focus borders
+        bookNewButton.setText(null); // do not show the action's text
 
         // add buttons to tool bar
-        toolBar.add(studentNewButton);
+        toolBar.add(bookNewButton);
 
         return toolBar;
     }
@@ -137,9 +145,9 @@ public class MVCApp extends JFrame implements ItemListener {
 
         JTextField searchField = new JTextField(searchInput, null, 0);
         searchInputPanel.add(searchField, BorderLayout.CENTER);
-        searchField.addActionListener(StudentSearchAction);
+        searchField.addActionListener(bookSearchAction);
 
-        JButton searchButton = new JButton(StudentSearchAction);
+        JButton searchButton = new JButton(bookSearchAction);
         searchButton.setFocusPainted(false);
         searchInputPanel.add(searchButton, BorderLayout.EAST);
 
@@ -162,8 +170,8 @@ public class MVCApp extends JFrame implements ItemListener {
         boolean selected = (e.getStateChange() == ItemEvent.SELECTED);
 
         //Set the enabled state of the appropriate Action.
-        if (checkBoxMenuItem.equals(studentNewActionStateToggleItem)) {
-            studentNewAction.setEnabled(selected);
+        if (checkBoxMenuItem.equals(bookNewActionStateToggleItem)) {
+            bookNewAction.setEnabled(selected);
         }
     }
 
