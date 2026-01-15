@@ -9,9 +9,9 @@ import java.awt.event.ActionListener;
 public class MainFrame extends JFrame {
     private BibliothekService service;
 
-    public MainFrame() {
+    public MainFrame(BibliothekService service) {
         // Logik-Service initialisieren
-        service = new BibliothekService();
+        this.service = service;
 
         // Fenster-Einstellungen
         setTitle("Bibliotheksverwaltung Team-Projekt");
@@ -35,11 +35,14 @@ public class MainFrame extends JFrame {
 
         JButton btnBuecher = new JButton("Bücher verwalten");
         JButton btnNutzer = new JButton("Nutzer verwalten");
+        // JButton btnExemplar = new JButton("Exemplare verwalten");
         JButton btnAusleihe = new JButton("Ausleihen / Rückgabe");
         JButton btnBeenden = new JButton("Beenden");
 
         buttonPanel.add(btnBuecher);
         buttonPanel.add(btnNutzer);
+        // Exemplar wird in Buch hinzugefügt
+        // buttonPanel.add(btnExemplar);
         buttonPanel.add(btnAusleihe);
         buttonPanel.add(btnBeenden);
 
@@ -54,13 +57,22 @@ public class MainFrame extends JFrame {
         });
 
         // Hier kommen später die Aufrufe für die anderen Fenster rein
-        btnBuecher.addActionListener(e -> JOptionPane.showMessageDialog(this, "Buch-Verwaltung folgt!"));
+        btnBuecher.addActionListener(e -> {
+            new BuchVerwaltungFrame(service).setVisible(true);
+        });        
+        btnNutzer.addActionListener(e -> {
+            new NutzerVerwaltungFrame(service).setVisible(true);
+        });
+        btnAusleihe.addActionListener(e -> {
+            new AusleihVerwaltungFrame(service).setVisible(true);
+        });
+
     }
 
-    public static void main(String[] args) {
-        // GUI im Event-Dispatch-Thread starten (Best Practice)
-        SwingUtilities.invokeLater(() -> {
-            new MainFrame().setVisible(true);
-        });
-    }
+    //public static void main(String[] args) {
+    //   // GUI im Event-Dispatch-Thread starten (Best Practice)
+    //    SwingUtilities.invokeLater(() -> {
+    //        new MainFrame().setVisible(true);
+    //    });
+    //}
 }

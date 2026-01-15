@@ -21,8 +21,14 @@ public class CSVDataStream {
         try (BufferedWriter writer = new BufferedWriter(
                 new OutputStreamWriter(new FileOutputStream(FILE_PATH), StandardCharsets.UTF_8))) {
             for (Buch b : buecher) {
-                // WICHTIG: Alle Attribute gemäß Fachmodell-Anforderung speichern [cite: 9-13]
-                writer.write(b.getTitel() + ";" + b.getIsbn() + ";" + b.getPreis()); // Erweitere dies um alle Felder
+                // Speichere ALLE 7 Felder in der richtigen Reihenfolge:
+                writer.write(b.getTitel() + ";" + 
+                            b.getIsbn() + ";" + 
+                            b.getAutor() + ";" + 
+                            b.getSprache() + ";" + 
+                            b.getSeitenzahl() + ";" + 
+                            b.getErscheinungsjahr() + ";" + 
+                            b.getPreis());
                 writer.newLine();
             }
         }
@@ -77,7 +83,7 @@ public class CSVDataStream {
             while ((zeile = reader.readLine()) != null) {
                 String[] d = zeile.split(";");
                 // Nur ein nicht String Attribut
-                liste.add(new Nutzer(Integer.parseInt(d[0]), d[1], d[2], d[3], d[4], d[5]));
+                liste.add(new Nutzer(Integer.parseInt(d[0]), d[1], d[2], d[3]));
             }
         }
         return liste;
@@ -88,7 +94,7 @@ public class CSVDataStream {
         try (BufferedWriter writer = new BufferedWriter(
                 new OutputStreamWriter(new FileOutputStream(EXEMPLAR_FILE), StandardCharsets.UTF_8))) {
             for (Exemplar e : exemplarListe) {
-                writer.write(e.toCSV());
+                writer.write(e.toCSV()); // Nutzt die neue toCSV Methode
                 writer.newLine();
             }
         }
@@ -104,14 +110,12 @@ public class CSVDataStream {
             String zeile;
             while ((zeile = reader.readLine()) != null) {
                 String[] d = zeile.split(";");
-                // Manuelle Umwandlung der Datentypen:
-                int id = Integer.parseInt(d[0]);             // String -> int
-                String isbn = d[1];                          // bleibt String
-                String standort = d[2];                      // bleibt String
-                boolean verleihbar = Boolean.parseBoolean(d[3]); // String -> boolean
-                int zustand = Integer.parseInt(d[4]);        // String -> int
-
-                liste.add(new Exemplar(id, isbn, standort, verleihbar, zustand));
+                if (d.length >= 3) {
+                    int id = Integer.parseInt(d[0]);
+                    String isbn = d[1];
+                    boolean verfuegbar = Boolean.parseBoolean(d[2]);
+                    liste.add(new Exemplar(id, isbn, verfuegbar));
+                }
             }
         }
         return liste;
