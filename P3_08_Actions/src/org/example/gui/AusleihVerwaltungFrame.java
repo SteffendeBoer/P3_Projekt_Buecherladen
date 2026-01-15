@@ -29,7 +29,7 @@ public class AusleihVerwaltungFrame extends JFrame {
         sorter = new TableRowSorter<>(model);
         ausleihTabelle.setRowSorter(sorter);
 
-        datenLaden();
+        datenInTabelleLaden();
 
         add(new JScrollPane(ausleihTabelle), BorderLayout.CENTER);
 
@@ -74,27 +74,26 @@ public class AusleihVerwaltungFrame extends JFrame {
         
         btnAdd.addActionListener(e -> {
             new AusleiheAnlegenDialog(this, service).setVisible(true);
-            datenLaden();
+            datenInTabelleLaden();
         });
 
         btnReturn.addActionListener(e -> {
             int row = ausleihTabelle.getSelectedRow();
             if (row != -1) {
-                // 1. Das richtige Objekt aus der Liste holen
-                Ausleihe selected = service.getAlleAusleihen().get(row);
+                int modelRow = ausleihTabelle.convertRowIndexToModel(row);
+                Ausleihe selektiert = service.getAlleAusleihen().get(modelRow);
                 
-                // 2. Den Service anweisen, genau dieses Objekt zu löschen
-                service.entferneAusleihe(selected); 
+                // Die neue Logik aufrufen
+                service.ausleiheBeenden(selektiert);
                 
-                // 3. Anzeige aktualisieren
-                datenLaden();
-            } else {
-                JOptionPane.showMessageDialog(this, "Bitte wählen Sie eine Ausleihe aus.");
+                // GUI aktualisieren
+                datenInTabelleLaden(); 
+                JOptionPane.showMessageDialog(this, "Buch zurückgegeben. Es kann nun wieder ausgeliehen werden.");
             }
         });
     }
 
-    private void datenLaden() {
+    private void datenInTabelleLaden() {
         model.setRowCount(0);
         for (Ausleihe a : service.getAlleAusleihen()) {
             model.addRow(new Object[]{

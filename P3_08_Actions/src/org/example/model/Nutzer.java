@@ -5,18 +5,12 @@ public class Nutzer{
     private String vorname;
     private String nachname;
     private String email;
-    private String wohnort;
-    private String rolle; // Könnte irrelevant seien, wegem Scope
-    private boolean istAktiv; 
 
-    public Nutzer(int nutzerID, String vorname, String nachname, String email, String wohnort, String rolle) {
+    public Nutzer(int nutzerID, String vorname, String nachname, String email) {
         this.nutzerID = nutzerID;
         this.vorname = vorname;
         this.nachname = nachname;
         this.email = email;
-        this.wohnort = wohnort;
-        this.rolle = rolle;
-        this.istAktiv = true;
     }
 
     // Getter/Setter
@@ -32,18 +26,14 @@ public class Nutzer{
     public String getEmail(){
         return this.email;
     }
-    public String getWohnort(){
-        return this.wohnort;
-    }
-    public String getRolle(){
-        return this.rolle;
-    }
-    public boolean getIstAktiv(){
-        return this.istAktiv;
-    }
 
-    // Wandelt das Objekt in eine CSV-Zeile um
+    @Override
+    public String toString() {
+        return getNachname() + " (Nachname: " + getNachname() + ")";
+    }
+    // Datenspeicherung
     public String toCSV() {
-        return nutzerID + ";" + vorname + ";" + nachname + ";" + email + ";" + wohnort + ";" + rolle + ";" + istAktiv;
+        // Trennung durch Semikolon
+        return nutzerID + ";" + vorname + ";" + nachname + ";" + email;
     }
 }

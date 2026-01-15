@@ -51,6 +51,13 @@ public class BuchVerwaltungFrame extends JFrame{
         southPanel.add(btnAdd);
         southPanel.add(btnDelete);
         southPanel.add(btnClose);
+        // Exemplar
+        JButton btnExemplarHinzufuegen = new JButton("Exemplar für Buch anlegen");
+        btnExemplarHinzufuegen.addActionListener(e -> {
+            new ExemplarAnlegenDialog(this, service).setVisible(true);
+        });
+        southPanel.add(btnExemplarHinzufuegen);
+
         add(southPanel, BorderLayout.SOUTH);
         
         // Suchleiste

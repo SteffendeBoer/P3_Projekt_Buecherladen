@@ -50,9 +50,8 @@ public class Buch {
     }
     
     @Override
-    public String toString(){
-        // Anpassung des Anzeigetextes
-        return this.titel + " (ISBN: " + this.isbn + ")"; 
+    public String toString() {
+        return getTitel() + " (Titel: " + getTitel() + ")";
     }
     // Datenspeicherung
     public String toCSV() {

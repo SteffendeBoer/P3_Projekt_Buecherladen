@@ -1,27 +1,37 @@
 package org.example.model;
 
-import java.io.Serializable;
-
-public class Exemplar implements Serializable {
+public class Exemplar {
     private int exemplarID;
     private String isbn;
-    private String standort;
-    private boolean istVerleihbar; // Pflicht: Boolean
-    private int zustandNote;       // Pflicht: Ganzzahl (z.B. 1=Neu, 5=Beschädigt)
+    private boolean istVerleihbar; // Status der physischen Kopie
 
-    public Exemplar(int exemplarID, String isbn, String standort, boolean istVerleihbar, int zustandNote) {
+    public Exemplar(int exemplarID, String isbn, boolean istVerleihbar) {
         this.exemplarID = exemplarID;
         this.isbn = isbn;
-        this.standort = standort;
         this.istVerleihbar = istVerleihbar;
-        this.zustandNote = zustandNote;
     }
 
+    // CSV-Format für die Speicherung im CSVDataStream
     public String toCSV() {
-        return exemplarID + ";" + isbn + ";" + standort + ";" + istVerleihbar + ";" + zustandNote;
+        return exemplarID + ";" + isbn + ";" + istVerleihbar;
     }
 
-    // Getter
+    @Override
+    public String toString() {
+        // Erscheint so in der JComboBox des Ausleihe-Dialogs
+        return "Exemplar-ID: " + exemplarID + " [" + (istVerleihbar ? "bereit" : "verliehen") + "]";
+    }
+
+    // Getter & Setter
     public int getExemplarID() { return exemplarID; }
     public String getIsbn() { return isbn; }
+    
+    // Die wichtige Methode für den Filter im Dialog
+    public boolean istVerleihbar() { 
+        return istVerleihbar; 
+    }
+
+    public void setIstVerleihbar(boolean istVerleihbar) { 
+        this.istVerleihbar = istVerleihbar; 
+    }
 }

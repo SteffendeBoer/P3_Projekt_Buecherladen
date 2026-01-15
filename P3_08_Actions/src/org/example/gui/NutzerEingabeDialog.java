@@ -9,6 +9,8 @@ public class NutzerEingabeDialog extends JDialog {
     private JTextField txtID = new JTextField();
     private JTextField txtVorname = new JTextField();
     private JTextField txtNachname = new JTextField();
+    private JTextField txtEmail = new JTextField();
+
 
     public NutzerEingabeDialog(Frame owner, BibliothekService service) {
         super(owner, "Nutzer anlegen", true);
@@ -33,7 +35,7 @@ public class NutzerEingabeDialog extends JDialog {
         btnSave.addActionListener(e -> {
             try {
                 int id = Integer.parseInt(txtID.getText());
-                Nutzer n = new Nutzer(id, txtVorname.getText(), txtNachname.getText(), "","","");
+                Nutzer n = new Nutzer(id, txtVorname.getText(), txtNachname.getText(), txtEmail.getText());
                 service.addNutzer(n);
                 dispose();
             } catch (NumberFormatException ex) {

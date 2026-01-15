@@ -35,11 +35,14 @@ public class MainFrame extends JFrame {
 
         JButton btnBuecher = new JButton("Bücher verwalten");
         JButton btnNutzer = new JButton("Nutzer verwalten");
+        // JButton btnExemplar = new JButton("Exemplare verwalten");
         JButton btnAusleihe = new JButton("Ausleihen / Rückgabe");
         JButton btnBeenden = new JButton("Beenden");
 
         buttonPanel.add(btnBuecher);
         buttonPanel.add(btnNutzer);
+        // Exemplar wird in Buch hinzugefügt
+        // buttonPanel.add(btnExemplar);
         buttonPanel.add(btnAusleihe);
         buttonPanel.add(btnBeenden);
 
