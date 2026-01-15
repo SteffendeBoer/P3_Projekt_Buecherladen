@@ -21,8 +21,14 @@ public class CSVDataStream {
         try (BufferedWriter writer = new BufferedWriter(
                 new OutputStreamWriter(new FileOutputStream(FILE_PATH), StandardCharsets.UTF_8))) {
             for (Buch b : buecher) {
-                // WICHTIG: Alle Attribute gemäß Fachmodell-Anforderung speichern [cite: 9-13]
-                writer.write(b.getTitel() + ";" + b.getIsbn() + ";" + b.getPreis()); // Erweitere dies um alle Felder
+                // Speichere ALLE 7 Felder in der richtigen Reihenfolge:
+                writer.write(b.getTitel() + ";" + 
+                            b.getIsbn() + ";" + 
+                            b.getAutor() + ";" + 
+                            b.getSprache() + ";" + 
+                            b.getSeitenzahl() + ";" + 
+                            b.getErscheinungsjahr() + ";" + 
+                            b.getPreis());
                 writer.newLine();
             }
         }

@@ -26,4 +26,9 @@ public class Ausleihe implements Serializable {
 
     // Getter
     public int getAusleihID() { return ausleihID; }
+    public int getExemplarID() { return exemplarID; }
+    public int getNutzerID() { return nutzerID; }
+    public long getAusleihDatum() { return ausleihDatum; }
+    public long getRueckgabeSoll() { return rueckgabeSoll; }
+    public double getGebuehr() { return gebuehr; }
 }

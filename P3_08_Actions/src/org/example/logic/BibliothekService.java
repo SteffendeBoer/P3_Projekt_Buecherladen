@@ -46,6 +46,10 @@ public class BibliothekService {
     private void speichernBuecher() {
         try { csvHandler.speichereBuecher(alleBuecher); } catch (IOException e) { e.printStackTrace(); }
     }
+    public void entferneBuch(Buch b) {
+        alleBuecher.remove(b);
+        speichernBuecher(); // Aktualisiert die buecher.csv
+    }
     public List<Buch> getAlleBuecher() { return alleBuecher; }
 
     // --- METHODEN FÜR NUTZER ---
@@ -55,6 +59,10 @@ public class BibliothekService {
     }
     private void speichernNutzer() {
         try { csvHandler.speichereNutzer(alleNutzer); } catch (IOException e) { e.printStackTrace(); }
+    }
+    public void entferneNutzer(Nutzer n) {
+        alleNutzer.remove(n);
+        speichernNutzer(); // Aktualisiert die nutzer.csv
     }
     public List<Nutzer> getAlleNutzer() { return alleNutzer; }
 
@@ -66,15 +74,25 @@ public class BibliothekService {
     private void speichernExemplare() {
         try { csvHandler.speichereExemplare(alleExemplare); } catch (IOException e) { e.printStackTrace(); }
     }
+    public void entferneExemplar(Exemplar e) {
+        alleExemplare.remove(e);
+        speichernExemplare(); // Aktualisiert die exemplar.csv
+    }
     public List<Exemplar> getAlleExemplare() { return alleExemplare; }
 
     // --- METHODEN FÜR AUSLEIHEN ---
     public void addAusleihe(Ausleihe a) {
-        alleAusleihen.add(a);
-        speichernAusleihen();
+        if (a != null) { // Sicherheitscheck
+            alleAusleihen.add(a);
+            speichernAusleihen();
+        }
     }
     private void speichernAusleihen() {
         try { csvHandler.speichereAusleihe(alleAusleihen); } catch (IOException e) { e.printStackTrace(); }
+    }
+    public void entferneAusleihe(Ausleihe a) {
+        alleAusleihen.remove(a);
+        speichernAusleihen(); // Aktualisiert die ausleihe.csv
     }
     public List<Ausleihe> getAlleAusleihen() { return alleAusleihen; }
 }
