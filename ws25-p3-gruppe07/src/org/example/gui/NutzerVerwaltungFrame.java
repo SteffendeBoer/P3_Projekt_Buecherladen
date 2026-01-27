@@ -90,7 +90,7 @@ public class NutzerVerwaltungFrame extends JFrame {
     private void datenInTabelleLaden() {
         tableModel.setRowCount(0);
         for (Nutzer n : service.getAlleNutzer()) {
-            tableModel.addRow(new Object[]{n.getNutzerID(), n.getVorname(), n.getNachname(), n.getEmail()});
+            tableModel.addRow(new Object[]{n.getNutzerID(), n.getVorname(), n.getNachname()});
         }
     }
 }

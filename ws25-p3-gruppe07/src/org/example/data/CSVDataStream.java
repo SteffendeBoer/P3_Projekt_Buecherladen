@@ -85,7 +85,7 @@ public class CSVDataStream {
             while ((zeile = reader.readLine()) != null) {
                 String[] d = zeile.split(";");
                 // Nur ein nicht String Attribut
-                liste.add(new Nutzer(Integer.parseInt(d[0]), d[1], d[2], d[3]));
+                liste.add(new Nutzer(Integer.parseInt(d[0]), d[1], d[2]));
             }
         }
         return liste;

@@ -34,8 +34,7 @@ public class NutzerSearchAction extends AbstractAction {
             tableModel.addRow(new Object[]{
                 n.getNutzerID(), 
                 n.getVorname(), 
-                n.getNachname(), 
-                n.getEmail()
+                n.getNachname()
             });
         }
     }

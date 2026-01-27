@@ -6,11 +6,10 @@ public class Nutzer{
     private String nachname;
     private String email;
 
-    public Nutzer(int nutzerID, String vorname, String nachname, String email) {
+    public Nutzer(int nutzerID, String vorname, String nachname) {
         this.nutzerID = nutzerID;
         this.vorname = vorname;
         this.nachname = nachname;
-        this.email = email;
     }
 
     // Getter/Setter
@@ -22,9 +21,6 @@ public class Nutzer{
     }
     public String getNachname(){
         return this.nachname;
-    }
-    public String getEmail(){
-        return this.email;
     }
 
     @Override

@@ -101,8 +101,7 @@ public class BibliothekService {
             // Suche Vorname, nachname oder Email
             if (idAlsText.contains(searchLower) || 
                 n.getVorname().toLowerCase().contains(searchLower) || 
-                n.getNachname().toLowerCase().contains(searchLower) ||
-                n.getEmail().toLowerCase().contains(searchLower)) {
+                n.getNachname().toLowerCase().contains(searchLower)) {
                 treffer.add(n);
             }
         }
